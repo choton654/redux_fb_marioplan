@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import NavbarLink from './components/layout/NavbarLink';
+import Dashboard from './components/dashbord/Dashboard';
+import SignIn from './components/auth/Signin';
+import SignUp from './components/auth/Signout';
+import CreateProject from './components/project/CreateProject';
+import ProjectDetails from './components/project/ProjectDetails';
+import Notfound from './notfound';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <NavbarLink />
+        <Switch>
+          <Route exact path='/' component={Dashboard} />
+          <Route exact path='/signin' component={SignIn} />
+          <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/create' component={CreateProject} />
+          <Route exact path='/project/:id' component={ProjectDetails} />
+          <Route exact path='/:notfound' component={Notfound} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
